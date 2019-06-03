@@ -14,17 +14,23 @@ import CadCurso from './pages/CadCurso';
 
 const App = () => (
   /*
-  <LoginTela />
-  <CadCurso />
-  <CadPlanoAula />
-  <Dashboard />
-  <CadPlanoEnsino />
+    <LoginTela />
+    <CadUser />
+    <CadCurso />
+    <CadPlanoAula />
+    <Dashboard />
+    <CadPlanoEnsino />
  */
   <div className='App'>
     <Header />
 
- 
+    <LoginTela />
     <CadUser />
+    <CadCurso />
+    <CadPlanoAula />
+    <CadPlanoEnsino />
+
+
   </div>
 );
 

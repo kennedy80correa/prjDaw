@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 
 export default class CadUser extends Component {
@@ -21,9 +22,30 @@ export default class CadUser extends Component {
         };
         this.onSubmit = (evento) => {
             //função para enviar formulário
-            console.log(this.state);
+            evento.preventDefault()
             
+            axios.post('https://api.github.com/users/mariaclarabs', this.state)
+              .then(response =>{
+                console.log(this.state)
+                this.compara(this.state, this.resp)
+              })
+            .catch(error => {
+                    console.log(error)
+            })
+
         };
+        this.resp = () => {
+            axios.get('https://api.github.com/users/mariaclarabs')
+            .then((response) => {
+                console.log(response.data.name);
+                //if((response.data.name) == ('clarabs'/*this.onSubmit.state.email*/)){console.log('fooooooooooooooiiiiiiiiiiii')};
+                //console.log(response.data.user.email);
+            });
+         };
+
+        this.compara = () => {
+            
+        }
     }
 
     render() {

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 
 export default class CadCurso extends Component {
@@ -21,9 +22,31 @@ export default class CadCurso extends Component {
         };
         this.onSubmit = (evento) => {
             //função para enviar formulário
-            console.log(this.state);
+            evento.preventDefault()
+            
+         
+            axios.post('https://api.github.com/users/mariaclarabs', this.state)
+              .then(response =>{
+                console.log(this.state)
+                this.compara(this.state, this.resp)
+              })
+            .catch(error => {
+                    console.log(error)
+            })
             
         };
+
+        this.resp = () => {
+            axios.get('https://api.github.com/users/mariaclarabs')
+            .then((response) => {
+                //console.log(response.data.name);
+            });
+         };
+
+        this.compara = () => {
+            //comparar resposta
+            }
+        
     }
 
     render() {
@@ -40,7 +63,7 @@ export default class CadCurso extends Component {
                 Criado em: <input type='date' name="createdAt" value={this.state.createdAt} onChange={this.onChange} /><br />
                 <br />
                     
-                    <button onClick={this.onSubmit}>Cadastrar</button>
+                    <button type='submit' onClick={this.onSubmit}>Cadastrar</button>
             </div>
         );
     }
