@@ -25,7 +25,7 @@ export default class CadCurso extends Component {
             evento.preventDefault()
             
          
-            axios.post('https://api.github.com/users/mariaclarabs', this.state)
+            axios.post('https://aplicplanos.herokuapp.com/api/course/', this.state)
               .then(response =>{
                 console.log(this.state)
                 this.compara(this.state, this.resp)
@@ -35,18 +35,6 @@ export default class CadCurso extends Component {
             })
             
         };
-
-        this.resp = () => {
-            axios.get('https://api.github.com/users/mariaclarabs')
-            .then((response) => {
-                //console.log(response.data.name);
-            });
-         };
-
-        this.compara = () => {
-            //comparar resposta
-            }
-        
     }
 
     render() {

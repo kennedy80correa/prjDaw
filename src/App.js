@@ -5,12 +5,7 @@ import api from './services/api'; // import da conexão com a api
 import './styles.css';
 
 import Header from './components/Header';
-import LoginTela from './pages/login';
-import CadUser from './pages/cadUser';
-import Dashboard from './pages/dashboard';
-import CadPlanoEnsino from './pages/cadPlanoEnsino';
-import CadPlanoAula from './pages/cadPlanoAula';
-import CadCurso from './pages/CadCurso';
+import Routes from './routes'
 
 const App = () => (
   /*
@@ -24,11 +19,7 @@ const App = () => (
   <div className='App'>
     <Header />
 
-    <LoginTela />
-    <CadUser />
-    <CadCurso />
-    <CadPlanoAula />
-    <CadPlanoEnsino />
+    <Routes />
 
 
   </div>

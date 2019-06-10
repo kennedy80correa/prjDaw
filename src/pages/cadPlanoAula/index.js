@@ -9,22 +9,36 @@ export default class CadPlanoAula extends Component {
             courseName: '',
             year: '',
             semester: '',
-            disciplina: '',
-            workload: '',
+            matterName: '',
+            workload: {
+                pratice: '',
+                theory: ''
+            },
             email: '',
-            turma: '',
-            coordenador: '',
-            professor: '',
+            codeClass: '',
+            coordinate: '',
+            teacher: '',
             content: [{
                 week: '',
                 date: '',
                 tp: '',
                 conteudo: '',
                 bibliography: ''
-            }]
-
-
-            //puxar mais campos, olhar no github
+            }],
+            bibliography: {
+                type: '',
+                name: '',
+                num: ''
+            },
+            grade: {
+                id: '',
+                activity: '',
+                description: '',
+                load: ''
+            },
+            data: '',
+            teacherSignature: '',
+            coordinateSignature: ''
         };
         this.onChange = (evento) => {
             const state = Object.assign({}, this.state);
@@ -36,7 +50,7 @@ export default class CadPlanoAula extends Component {
             //função para enviar formulário
             evento.preventDefault()
             
-            axios.post('https://api.github.com/users/mariaclarabs', this.state)
+            axios.post('https://aplicplanos.herokuapp.com/api/classplan/', this.state)
               .then(response =>{
                 console.log(this.state)
                 this.compara(this.state, this.resp)
@@ -46,18 +60,7 @@ export default class CadPlanoAula extends Component {
             })
 
         };
-        this.resp = () => {
-            axios.get('https://api.github.com/users/mariaclarabs')
-            .then((response) => {
-                console.log(response.data.name);
-                //if((response.data.name) == ('clarabs'/*this.onSubmit.state.email*/)){console.log('fooooooooooooooiiiiiiiiiiii')};
-                //console.log(response.data.user.email);
-            });
-         };
-
-        this.compara = () => {
-            
-        }
+        
     }
     //content[i].conteudo
     render() {
@@ -84,15 +87,17 @@ export default class CadPlanoAula extends Component {
                 <br />
                 Semestre: <input name="semester" value={this.state.semester} onChange={this.onChange} /><br />
                 <br />
-                Disciplina: <input name="disciplina" value={this.state.disciplina} onChange={this.onChange} /><br />
+                Disciplina: <input name="matterName" value={this.state.matterName} onChange={this.onChange} /><br />
                 <br />
-                Carga Horária: <input name="workload" value={this.state.workload} onChange={this.onChange} /><br />
+                Carga Horária:
+                Teórica<input name="workloadT" value={this.state.workload.theory} onChange={this.onChange} />
+                Prática<input name="workloadP" value={this.state.workload.pratice} onChange={this.onChange} /><br />
                 <br />
                 Email: <input name="email" value={this.state.email} onChange={this.onChange} /><br />
                 <br />
-                Coordenador: <input name="coordenador" value={this.state.coordenador} onChange={this.onChange} /><br />
+                Coordenador: <input name="coordinate" value={this.state.coordinate} onChange={this.onChange} /><br />
                 <br />
-                Professor: <input name="professor" value={this.state.professor} onChange={this.onChange} /><br />
+                Professor: <input name="teacher" value={this.state.teacher} onChange={this.onChange} /><br />
                 <br />
                 Conteúdo: 
                 <br /><textarea name="content.conteudo" value={this.state.content.conteudo} onChange={this.onChange} rows={3} cols={40} /><br />
@@ -102,11 +107,11 @@ export default class CadPlanoAula extends Component {
                 Data: <input type='date' name="content.date" value={this.state.content.date} onChange={this.onChange} /><br />
                 <br />
                 Aula: <br />
-                <input type="radio" name="tp" value="teorica" onChange={this.onChange} checked={this.state.tp === 'teorica'} /> Teórica <br />
-                <input type="radio" name="tp" value="pratica" onChange={this.onChange} checked={this.state.tp === 'pratica'} /> Prática <br />
+                <input type="radio" name="tp" value="theory" onChange={this.onChange} checked={this.state.tp === 'theory'} /> Teórica <br />
+                <input type="radio" name="tp" value="pratice" onChange={this.onChange} checked={this.state.tp === 'pratice'} /> Prática <br />
                 <br />
                 Turma:
-                <select name='turma' onChange={this.onChange} value={this.state.turma}>
+                <select name='codeClass' onChange={this.onChange} value={this.state.codeClass}>
                     <option value=''>Selecione uma turma...</option>
                     <option value='1'>turma 1</option>
                     <option value='2'>turma 2</option>

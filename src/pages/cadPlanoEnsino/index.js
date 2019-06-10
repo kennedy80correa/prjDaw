@@ -9,27 +9,41 @@ export default class CadPlanoEnsino extends Component{
             matterName: '',
             teacher: '',
             coordinate: '',
-            workLoad: [{
+            workLoad: {
                 pratice: '',
                 theory: ''
-            }],
+            },
             att: '',
             validation: '',
             ementa: '',
             goals: '',
             goals2: '',
             goals3: '',
-            content: [{
+            content: {
                 mod1: '',
                 mod2: ''
-            }],
+            },
             methodology: '',
+            grade: {
+                description: '',
+                realGrade: {
+                    id: '',
+                    activity: '',
+                    load: ''
+                },
+            },
+            baseBibliography: {
+                name: '',
+                num: ''
+            },
             bibliography: '',
             ata: '',
             data: '',
+            library: {
+                title: '',
+            },
             memberNDE: '',            
 
-            //puxar mais campos, olhar no github
         };
         this.onChange = (evento) => {
             const state = Object.assign({}, this.state);
@@ -41,7 +55,7 @@ export default class CadPlanoEnsino extends Component{
             //função para enviar formulário
             evento.preventDefault()
             
-            axios.post('https://api.github.com/users/mariaclarabs', this.state)
+            axios.post('https://aplicplanos.herokuapp.com/api/teachingplan/', this.state)
               .then(response =>{
                 console.log(this.state)
                 this.compara(this.state, this.resp)
@@ -50,20 +64,7 @@ export default class CadPlanoEnsino extends Component{
                     console.log(error)
             })
 
-        };
-        this.resp = () => {
-            axios.get('https://api.github.com/users/mariaclarabs')
-            .then((response) => {
-                console.log(response.data.name);
-                //if((response.data.name) == ('clarabs'/*this.onSubmit.state.email*/)){console.log('fooooooooooooooiiiiiiiiiiii')};
-                //console.log(response.data.user.email);
-            });
-         };
-
-        this.compara = () => {
-            
-        }
-            
+        };          
         
     }
     render(){

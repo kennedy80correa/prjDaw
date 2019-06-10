@@ -24,28 +24,16 @@ export default class CadUser extends Component {
             //função para enviar formulário
             evento.preventDefault()
             
-            axios.post('https://api.github.com/users/mariaclarabs', this.state)
+            axios.post('https://aplicplanos.herokuapp.com/api/auth/register', this.state)
               .then(response =>{
                 console.log(this.state)
-                this.compara(this.state, this.resp)
               })
             .catch(error => {
                     console.log(error)
             })
 
         };
-        this.resp = () => {
-            axios.get('https://api.github.com/users/mariaclarabs')
-            .then((response) => {
-                console.log(response.data.name);
-                //if((response.data.name) == ('clarabs'/*this.onSubmit.state.email*/)){console.log('fooooooooooooooiiiiiiiiiiii')};
-                //console.log(response.data.user.email);
-            });
-         };
-
-        this.compara = () => {
-            
-        }
+        
     }
 
     render() {
