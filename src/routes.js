@@ -20,7 +20,7 @@ const PrivateRoute = ({component: Component, ... rest }) => (
 const Routes = () => (
     <BrowserRouter>
         <Switch>
-            <Route exact path='/' component={() => <CadPlanoAula/>}/>
+            <Route exact path='/' component={() => <CadUser />}/>
             <PrivateRoute path='./pages/CadCurso' component={() => <CadCurso />}/>
         </Switch>
     </BrowserRouter>
